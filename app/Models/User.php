@@ -45,4 +45,8 @@ class User extends Authenticatable
     public function tasks(){
         return $this->belongsToMany(Task::class);
     }
+
+    public function photos(){
+        return $this->hasMany(User_photo::class);
+    }
 }

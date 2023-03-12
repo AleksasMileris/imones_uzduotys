@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AsignController;
 use App\Http\Controllers\TaskController;
+use App\Http\Controllers\UserPhotoController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -27,3 +28,6 @@ Route::post("asign/addTask", [AsignController::class, 'addTask'])->name('asign.a
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+
+Route::resource("users", UserPhotoController::class);
