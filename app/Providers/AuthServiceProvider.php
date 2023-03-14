@@ -3,7 +3,11 @@
 namespace App\Providers;
 
 // use Illuminate\Support\Facades\Gate;
+use App\Models\User;
+use App\Policies\AdminPolicys;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
+use Illuminate\Pagination\Paginator;
+use Illuminate\Support\Facades\Gate;
 
 class AuthServiceProvider extends ServiceProvider
 {
@@ -21,6 +25,25 @@ class AuthServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        Paginator::useBootstrapFive();
+
+       Gate::define('canDeleteUser',function(User $user){
+            if($user->admin==1){
+               return true;
+            }else{
+                return false;
+            }
+       });
+
+       Gate::define('canChangePassword',function (User $user){
+           if($user->admin==1){
+               return true;
+           }else{
+               return false;
+           }
+       });
+
+       Gate::define('adminActions',[AdminPolicys::class,'adminActions']);
+
     }
 }

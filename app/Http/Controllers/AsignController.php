@@ -9,10 +9,12 @@ use Illuminate\Http\Request;
 class AsignController extends Controller
 {
     public function index()
-    {
+    {   $user=User::all();
+        $sum=$user->count();
         return view("asign.index",[
 
-            "users"=>User::all()
+            "users"=>$user,
+            "sum"=>$sum
         ]);
 
 

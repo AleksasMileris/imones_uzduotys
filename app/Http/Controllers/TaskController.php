@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Task;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class TaskController extends Controller
@@ -12,8 +13,12 @@ class TaskController extends Controller
      */
     public function index()
     {
+        $sum=Task::count();
+        $tasks=Task::paginate(5);
+
        return view("tasks.index",[
-           "tasks"=>Task::all()
+           "tasks"=>$tasks,
+           "sum"=>$sum
        ]);
     }
 
@@ -76,5 +81,12 @@ class TaskController extends Controller
         $task->delete();
         return redirect()->route('tasks.index');
 
+    }
+    public function delete($id ,$user_id){
+        $user=User::find($user_id);
+        if($user !=null){
+        $user->tasks()->where('task_id',$id)->detach($id);
+        return redirect()->route('users.show',$user->id);
+        }
     }
 }

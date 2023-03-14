@@ -21,6 +21,12 @@
                                 <input class="form-control" type="text" name="email" value="{{$user->email}}">
                             </div>
 
+
+                            <div class="mt-3">
+                                <label class="form-label">Pakeisti Slaptažodi</label>
+                                <input class="form-control" type="password" name="password">
+                            </div>
+
                             <div class="mt-3 col-md-6">
                                 <label class="form-label">Nuotrauka</label>
                                 <input class="form-control" type="file" name="picture">

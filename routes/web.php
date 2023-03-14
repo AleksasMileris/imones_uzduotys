@@ -31,3 +31,4 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 
 Route::resource("users", UserPhotoController::class);
+Route::delete('tasks/{task_id}/delete/{user_id}',[TaskController::class,'delete'])->name('task.delete');
